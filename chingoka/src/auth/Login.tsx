@@ -154,9 +154,9 @@ export default function Login() {
         </form>
 
         <p className="mt-6 text-center text-gray-600 text-sm">
-          <a href="/forgot-password" className="text-blue-600 hover:underline">
+          {/* <a href="/forgot-password" className="text-blue-600 hover:underline">
             Forgot Password?
-          </a>
+          </a> */}
         </p>
       </div>
     </div>
