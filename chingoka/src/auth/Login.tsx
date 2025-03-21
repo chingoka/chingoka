@@ -89,7 +89,7 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md px-8 py-10 bg-white rounded-2xl shadow-2xl">
+    <div className="w-full max-w-md px-8 py-10 bg-white rounded-2xl shadow-2xl">  
         {/*  Add an Image Here */}
         {/* <div className="flex justify-center mb-4">
           <img
