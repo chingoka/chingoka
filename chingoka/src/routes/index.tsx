@@ -16,6 +16,7 @@ import EmployeeLayout from "../layout/EmployeeLayout";
 import UsersPage from "../pages/organizer/UsersPage";
 import DocumentForm from "../pages/DocumentForm";
 import UserProduct from "../pages/organizer/UserProduct";
+import ProductDetail from "../pages/organizer/ProductDetail";
 
 const AppRoutes: React.FC = () => {
   const [] = React.useState<any>(null); // This should be set based on your auth logic
@@ -38,6 +39,7 @@ const AppRoutes: React.FC = () => {
               <Route path="register" element={<Register />} />
               <Route path="users" element={<UsersPage/>} />
               <Route path="uploaded-product" element={<UserProduct/>} />
+              <Route path="uploaded-product-detail" element={<ProductDetail/>} />
               <Route path="product-to-store" element={<ProductToStore />} />
               <Route path="document" element={<DocumentForm />} />
               <Route path="today-sales" element={<TodaySales />} />

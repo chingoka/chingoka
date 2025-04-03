@@ -91,14 +91,14 @@ export default function Login() {
     <div className="flex h-screen w-screen items-center justify-center bg-gray-100 px-4">
     <div className="w-full max-w-md px-8 py-10 bg-white rounded-2xl shadow-2xl">  
         {/*  Add an Image Here */}
-        {/* <div className="flex justify-center mb-4">
+        <div className="flex justify-center mb-4">
           <img
             src="src/assets/logo/chingokabg.png"  
             alt="Login"
             className="w-32 h-32 object-cover"
           />
-        </div> */}
-
+        </div>
+        {/* <h1>CHINGOKA $ UNIT</h1> */}
         <p className="mt-2 text-lg text-gray-600 text-center">
           Login to manage your warehouse inventory efficiently.
         </p>
@@ -146,7 +146,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-blue-600 py-3 text-lg font-semibold text-white transition-all duration-200 hover:bg-blue-700 disabled:bg-blue-400"
+            className="w-full rounded-lg bg-blue-600 py-3 text-lg font-semibold text-yellow transition-all duration-200 hover:bg-blue-700 disabled:bg-blue-400"
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}

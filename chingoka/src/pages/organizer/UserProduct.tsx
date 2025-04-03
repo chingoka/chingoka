@@ -47,11 +47,11 @@ const UserProduct = () => {
           {products.map((product) => (
             <div key={product.id} className="p-4 border rounded-lg shadow bg-blue-200 text-black">
               <h3 className="text-xl font-bold text-black">{product.name}</h3>
-              <p>Quantity: {product.quantity}</p>
               <p>Category: {product.category}</p>
+              <p>Quantity: {product.quantity}</p>
               <p>Size: {product.size}</p>
               <p>Store: {product.store}</p>
-              <p>User: {product.user}</p>
+              <p>User uploaded: {product.user}</p>
               <p className="text-sm text-gray-500">
                 Uploaded on: {new Date(product.timestamp).toLocaleString()}
               </p>

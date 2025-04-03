@@ -1,27 +1,40 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Esidebar from "../components/Esidebar";
+import Sidebar from "../components/Sidebar"; // Import the unified sidebar
 import Navbar from "../components/Navbar";
 
-
-
-
 const EmployeeLayout: React.FC = () => {
-  const [isEsidebarCollapsed, setIsEsidebarCollapsed] = useState(false);
+  // const [isSidebarCollapsed, setIsEsidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  // Assuming role is stored in sessionStorage
+  const userRole = sessionStorage.getItem("role") || "employee"; // Default to 'employee'
+
+  // const toggleEsidebar = () => {
+  //   setIsEsidebarCollapsed((prev) => !prev);
+  // };
+
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed((prev) => !prev);
+  };
 
   return (
     <div className="flex h-screen w-screen">
-      <Esidebar isCollapsed={isEsidebarCollapsed} />
+      {/* Sidebar with role-based access */}
+      <Sidebar isCollapsed={isSidebarCollapsed} userRole={userRole} />
+
       <div
         className={`flex-1 transition-all duration-300 ${
-          isEsidebarCollapsed ? "ml-16" : "ml-64"
+          isSidebarCollapsed ? "ml-16" : "ml-64"
         }`}
       >
         <Navbar
-                  toggleEsidebar={() => setIsEsidebarCollapsed(!isEsidebarCollapsed)}
-                  isEsidebarCollapsed={isEsidebarCollapsed} toggleSidebar={function (): void {
-                      throw new Error("Function not implemented.");
-                  } } isSidebarCollapsed={false}        />
+          toggleSidebar={toggleSidebar}
+          isSidebarCollapsed={isSidebarCollapsed} toggleEsidebar={function (): void {
+            throw new Error("Function not implemented.");
+          } } isEsidebarCollapsed={false}          // toggleSidebar={toggleSidebar}
+          // isSidebarCollapsed={isSidebarCollapsed}
+        />
         <main className="p-5 pt-5">
           <Outlet />
         </main>
@@ -29,4 +42,5 @@ const EmployeeLayout: React.FC = () => {
     </div>
   );
 };
+
 export default EmployeeLayout;

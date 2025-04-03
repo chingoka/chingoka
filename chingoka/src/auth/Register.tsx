@@ -25,6 +25,7 @@ const Register = () => {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [isPopupVisible, setPopupVisible] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,7 +35,20 @@ const Register = () => {
     e.preventDefault();
     setError("");
     setSuccess("");
+    setLoading(true); // Start loading
     setPopupVisible(true);
+
+    // Clear form data immediately after the user clicks submit button
+    setFormData({
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      username: "",
+      phoneNumber: "",
+      email: "",
+      password: "",
+      role: "employee",
+    });
 
     try {
       const response = await fetch("http://127.0.0.1:8000/user/registration/", {
@@ -50,18 +64,10 @@ const Register = () => {
       }
 
       setSuccess("Registration successful! Please verify your email.");
-      setFormData({
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        username: "",
-        phoneNumber: "",
-        email: "",
-        password: "",
-        role: "employee",
-      });
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred.");
+    } finally {
+      setLoading(false); // Stop loading when done
     }
   };
 
@@ -69,9 +75,9 @@ const Register = () => {
     <div className="min-h-screen mx-auto p-6 bg-white shadow-md rounded-lg relative mt-4">
       <h2 className="text-2xl font-bold mt-5 mb-4 text-[#023e93de] text-center">Register all user </h2>
       <p className="text-xl font-bold mt-5 mb-4 text-[#023e93de] text-center">only the registered user can access the system </p>
-      
+
       {isPopupVisible && (error || success) && (
-        <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-80 p-4 rounded-lg shadow-lg ${error ? 'bg-red-500' : 'bg-green-500'}`}>
+        <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 mt-15 w-150 p-4 rounded-lg shadow-lg ${error ? 'bg-red-500' : 'bg-green-500'}`}>
           <p className="text-white text-center">{error || success}</p>
           <button onClick={() => setPopupVisible(false)} className="mt-2 w-full bg-gray-800 text-white py-1 rounded">
             Close
@@ -192,7 +198,13 @@ const Register = () => {
           </select>
         </div>
 
-        <button type="submit" className="w-full bg-[#023e93de] text-white py-2 rounded hover:bg-[#015f8d] transition-colors">Register</button>
+        <button
+          type="submit"
+          className={`w-full py-2 rounded transition-colors ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#023e93de] text-white hover:bg-[#015f8d]'}`}
+          disabled={isLoading}
+        >
+          {isLoading ? "Registering..." : "Register"}
+        </button>
       </form>
     </div>
   );
