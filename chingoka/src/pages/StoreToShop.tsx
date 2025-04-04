@@ -88,7 +88,7 @@ const StoreToShop: React.FC = () => {
     setIsSubmitting(true);
   
     try {
-      const response = await fetch("http://127.0.0.1:8000/product/product/add/", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/product/product/add/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -32,7 +32,7 @@ const ProductToStore: React.FC = () => {
 
   // Fetch username from session
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/auth/user/", {
+    fetch(`${import.meta.env.VITE_API_URL}/auth/user/`, {
       credentials: "include", // Required for session authentication
     })
       .then((res) => res.json())
@@ -44,7 +44,7 @@ const ProductToStore: React.FC = () => {
 
   // Fetch categories, sizes, and stores
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/product/category_size/")
+    fetch(`${import.meta.env.VITE_API_URL}/product/category_size/`)
       .then((res) => res.json())
       .then((data) => setCategoriesAndSizes(data))
       .catch((err) => console.error("Error fetching categories and sizes:", err));
@@ -95,7 +95,7 @@ const ProductToStore: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/product/product/add/", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/product/product/add/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -18,7 +18,7 @@ const UsersPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/user/user?roles=organizer,employee");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/user/user?roles=organizer,employee`);
         if (!response.ok) {
           throw new Error("Failed to fetch users");
         }

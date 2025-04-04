@@ -26,7 +26,7 @@ const ProductToStore: React.FC = () => {
   const [modalMessage, setModalMessage] = useState<{ type: string; message: string }>({ type: "", message: "" });
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/product/category_size/")
+    fetch(`${import.meta.env.VITE_API_URL}/product/category_size/`)
       .then((res) => res.json())
       .then((data) => setCategoriesAndSizes(data))
       .catch((err) => console.error("Error fetching categories and sizes:", err));
@@ -71,7 +71,7 @@ const ProductToStore: React.FC = () => {
 
     try {
       for (const product of products) {
-        const response = await fetch("http://127.0.0.1:8000/product/add/", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/product/add/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(product)

@@ -24,7 +24,7 @@ const VerifyEmail: React.FC = () => {
   const verifyEmail = async (token: string) => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/user/verify-email/",
+        `${import.meta.env.VITE_API_URL}/user/verify-email/`,
         { token },
         { headers: { "Content-Type": "application/json" } }
       );

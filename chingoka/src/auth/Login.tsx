@@ -36,6 +36,7 @@ export default function Login() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     if (!validateForm()) return;
 
     setLoading(true);
@@ -43,7 +44,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/user/login/",
+        `${import.meta.env.VITE_API_URL}/user/login/`,
         { username, password },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -91,14 +92,14 @@ export default function Login() {
     <div className="flex h-screen w-screen items-center justify-center bg-gray-100 px-4">
     <div className="w-full max-w-md px-8 py-10 bg-white rounded-2xl shadow-2xl">  
         {/*  Add an Image Here */}
-        <div className="flex justify-center mb-4">
+        {/* <div className="flex justify-center mb-4">
           <img
-            src="src/assets/logo/chingokabg.png"  
+            src="/chingoka/public/chingokabg.png"  
             alt="Login"
             className="w-32 h-32 object-cover"
           />
-        </div>
-        {/* <h1>CHINGOKA $ UNIT</h1> */}
+        </div> */}
+        <h2 className="text-blue-600 text-center font-extrabold">CHINGOKA & G UNIT</h2>
         <p className="mt-2 text-lg text-gray-600 text-center">
           Login to manage your warehouse inventory efficiently.
         </p>
